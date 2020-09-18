@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "38083719173",
+    "firebase_url": "https://lwsocialchatproject-43a5c.firebaseio.com",
+    "project_id": "lwsocialchatproject-43a5c",
+    "storage_bucket": "lwsocialchatproject-43a5c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:38083719173:android:aba5c21865e737d51b6c6c",
+        "android_client_info": {
+          "package_name": "com.jyoti.lwsocialchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "38083719173-ob7oclbjgh08vuoigvofmhletra435pk.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTNLWY2eg560GJQFesP-qbVPAKigBJU0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "38083719173-ob7oclbjgh08vuoigvofmhletra435pk.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

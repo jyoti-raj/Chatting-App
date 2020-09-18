@@ -1,0 +1,94 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:lwsocialchat/reg.dart';
+
+main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  Firebase.initializeApp();
+  runApp(MaterialApp(
+    home: MyChat(),
+  ));
+}
+
+class MyChat extends StatefulWidget {
+  @override
+  _MyChatState createState() => _MyChatState();
+}
+
+class _MyChatState extends State<MyChat> {
+  String mess, email;
+  var authc = FirebaseAuth.instance;
+  var fconnect = FirebaseFirestore.instance;
+  var fuser = FirebaseAuth.instance.currentUser;
+  var controller = TextEditingController();
+
+  // myget() async {
+  //   await for(var )
+  // }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Chat Page'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.close),
+            onPressed: () async {
+              await authc.signOut();
+              Navigator.pushNamed(context, 'login');
+            },
+            color: Colors.white,
+          )
+        ],
+      ),
+      body: Column(
+        children: <Widget>[
+          Container(
+            child: RaisedButton(
+              onPressed: () {
+                try {
+                  var x = authc.currentUser;
+                  print(x.email);
+                } catch (e) {
+                  print(e);
+                }
+              },
+              child: Text('click to know user'),
+            ),
+          ),
+          TextField(
+            controller: controller,
+            onChanged: (value) {
+              mess = value;
+            },
+            keyboardType: TextInputType.multiline,
+          ),
+          FlatButton(
+            onPressed: () async {
+              var ms = fconnect.collection("chat").get();
+              print(ms);
+              print(mess);
+            },
+            child: Text('get message'),
+            color: Colors.blue,
+          ),
+          FlatButton(
+            onPressed: () async {
+              controller.clear();
+              await fconnect.collection("chat").add({
+                "sender": authc.currentUser.email,
+                "text": mess,
+              });
+            },
+            child: Text('send message'),
+            color: Colors.blue,
+          )
+        ],
+      ),
+    );
+  }
+}
